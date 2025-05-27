@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Reserva - Elite Eventos</title>
+  <link rel="stylesheet" href="../Factura_pago/Factura.css">
+</head>
+<body>
+  <main class="container">
+    <section class="content" style="max-width:700px;margin:2rem auto;">
+      <h2><i class="fas fa-edit"></i> Editar Reserva</h2>
+      <form id="formEditarReserva">
+        <input type="hidden" id="idReserva" name="idReserva">
+        <div class="field">
+          <label>Fecha del Evento</label>
+          <input type="date" id="fecha_res" name="fecha_res" required>
+        </div>
+        <div class="field">
+          <label>Hora de Inicio</label>
+          <input type="text" id="Hora_inicio" name="Hora_inicio" required>
+        </div>
+        <div class="field">
+          <label>Tipo de Evento</label>
+          <input type="text" id="tipo_evento" name="tipo_evento" required>
+        </div>
+        <div class="field">
+          <label>Temática</label>
+          <input type="text" id="tematica" name="tematica">
+        </div>
+        <div class="field">
+          <label>Duración</label>
+          <input type="text" id="Duración" name="Duración" required>
+        </div>
+        <div class="field">
+          <label>Instituto</label>
+          <input type="text" id="instituto" name="instituto">
+        </div>
+        <div class="field">
+          <label>Preferencia de Contacto</label>
+          <input type="text" id="pref_contacto" name="pref_contacto">
+        </div>
+        <div class="field">
+          <label>Hacienda</label>
+          <select id="FK_id_Hacienda" name="FK_id_Hacienda" required>
+            <option value="">Seleccione una hacienda</option>
+            <option value="1">El Paraíso Escondido</option>
+            <option value="2">Los Jardines del Sol</option>
+            <option value="3">Polideportivo El Encanto Natural</option>
+            <option value="4">Hacienda La Montaña</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Decoración</label>
+          <select id="FK_id_decoracion" name="FK_id_decoracion" required>
+            <option value="">Seleccione una decoración</option>
+            <option value="1">Temático y Personalizado</option>
+            <option value="2">Glamuroso y Extravagante</option>
+            <option value="3">Clásico y Elegante</option>
+            <option value="4">Rústico y Natural</option>
+          </select>
+        </div>
+        <button type="submit" class="boton"><i class="fas fa-save"></i> Guardar Cambios</button>
+      </form>
+      <div id="mensajeEditar"></div>
+    </section>
+  </main>
+  <script>
+    // Obtener datos y rellenar el formulario
+    document.addEventListener('DOMContentLoaded', async function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id) return;
+      document.getElementById('idReserva').value = id;
+      // Obtener datos actuales
+      const resp = await fetch('resumen_factura.php?id=' + encodeURIComponent(id));
+      const data = await resp.json();
+      if (data.success && data.reserva) {
+        const r = data.reserva;
+        document.getElementById('fecha_res').value = r.fecha_res;
+        document.getElementById('Hora_inicio').value = r.Hora_inicio;
+        document.getElementById('tipo_evento').value = r.tipo_evento;
+        document.getElementById('tematica').value = r.tematica;
+        document.getElementById('Duración').value = r.Duración;
+        document.getElementById('instituto').value = r.instituto || '';
+        document.getElementById('pref_contacto').value = r.pref_contacto || '';
+        document.getElementById('FK_id_Hacienda').value = r.FK_id_Hacienda;
+        document.getElementById('FK_id_decoracion').value = r.FK_id_decoracion;
+      }
+    });
+
+    // Guardar cambios
+    document.getElementById('formEditarReserva').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const resp = await fetch('actualizar_reserva.php', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await resp.json();
+      const mensaje = document.getElementById('mensajeEditar');
+      if (data.success) {
+        mensaje.innerHTML = '<div class="mensaje"><i class="fas fa-check-circle"></i> Reserva actualizada correctamente.</div>';
+      } else {
+        mensaje.innerHTML = '<div class="mensaje"><i class="fas fa-exclamation-triangle"></i> Error al actualizar: ' + (data.error || '') + '</div>';
+      }
+    });
+  </script>
+</body>
+</html>

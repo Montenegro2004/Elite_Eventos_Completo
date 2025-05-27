@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Planifica tu evento especial con Elite Eventos. Reserva haciendas exclusivas para bodas, eventos corporativos y más.">
+  <title>Planificación de Eventos - Elite Eventos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="Opciones.css">
+
+</head>
+<body>
+
+  <!-- Navbar Elegante -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html" aria-label="Inicio - Elite Eventos">
+        <span class="logo-icon" aria-hidden="true"><i class="fas fa-crown"></i></span>
+        <span class="logo-text">Elite Eventos</span>
+      </a>
+      <div class="navbar-actions">
+        <a href="../Haciendas.html" class="nav-link active">Haciendas</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Progreso del formulario -->
+  <div class="progress-container" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-steps">
+      <div class="step active" aria-current="step">
+        <div class="step-number">1</div>
+        <div class="step-label">Fecha</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-label">Información</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-label">Evento</div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-label">Decoración</div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 20%"></div>
+    </div>
+  </div>
+
+  <!-- Contenido Principal -->
+  <main class="container my-5">
+    <!-- Paso 1: Calendario -->
+    <section class="planning-section calendar-section" id="step1" aria-labelledby="calendar-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="calendar-heading">Elige la fecha para tu evento</h2>
+        <p class="section-subtitle">Selecciona el día perfecto para tu ocasión especial</p>
+      </div>
+      
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button class="nav-button" id="prev-month" aria-label="Mes anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+          <h3 class="month-year" id="current-month-year">Marzo 2025</h3>
+          <button class="nav-button" id="next-month" aria-label="Mes siguiente"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        
+        <div class="calendar-grid">
+          <div class="weekdays">
+            <div>Dom</div>
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mié</div>
+            <div>Jue</div>
+            <div>Vie</div>
+            <div>Sáb</div>
+          </div>
+          
+          <div class="days" id="calendar-days" role="grid">
+            <!-- Los días se generarán dinámicamente con JavaScript -->
+          </div>
+        </div>
+        
+        <div class="calendar-footer">
+          <div class="availability-info">
+            <div class="availability-dot available" aria-hidden="true"></div>
+            <span>Disponible</span>
+            <div class="availability-dot booked" aria-hidden="true"></div>
+            <span>Reservado</span>
+            <div class="availability-dot selected" aria-hidden="true"></div>
+            <span>Seleccionado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-footer">
+        <button class="btn btn-primary btn-next" id="next-to-info">
+          Siguiente <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Paso 2: Información Personal -->
+    <section class="planning-section info-section" id="step2" style="display: none;" aria-labelledby="info-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="info-heading">Información del Cliente</h2>
+        <p class="section-subtitle">Por favor completa tus datos para continuar</p>
+      </div>
+      
+      <form class="info-form" id="client-info-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellido" name="apellidos" placeholder="Ingresa tus apellidos" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Número de contacto" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="correo" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="empresa">Empresa o Institución (Opcional)</label>
+          <input type="text" id="instituto" name="empresa" placeholder="Nombre de la empresa">
+        </div>
+        
+        <div class="form-group">
+          <label for="contacto">Preferencia de contacto</label>
+          <select id="pref_contacto" name="contacto">
+            <option value="">Selecciona una opción</option>
+            <option value="email">Correo electrónico</option>
+            <option value="llamada">Llamada telefónica</option>
+            <option value="whatsapp">WhatsApp</option>
+          </select>
+        </div>
+      </form>
+      
+      <div class="section-footer">
+        <button class="btn btn-outline-secondary btn-prev" id="back-to-calendar">
+          <i class="fas fa-arrow-left me-2" aria-hidden="true"></i> Anterior
+        </button>
+        <button class="btn btn-primary btn-next" id="next-to-event">
+          Siguiente <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Paso 3: Personaliza tu Evento -->
+    <section class="planning-section event-section" id="step3" style="display: none;" aria-labelledby="event-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="event-heading">Detalles del Evento</h2>
+        <p class="section-subtitle">Personaliza los detalles de tu evento especial</p>
+      </div>
+      
+      <form class="event-form" id="event-details-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hora">Hora de inicio</label>
+            <input type="time" id="Hora_inicio" name="hora" required>
+          </div>
+          <div class="form-group">
+            <label for="duracion">Duración</label>
+            <select id="duracion" name="duracion" required>
+              <option value="">Selecciona duración</option>
+              <option value="9">9 horas</option>
+              <option value="13">13 horas</option>
+              <option value="16">16 horas</option>
+              <option value="18">18 horas</option>
+              <option value="full-day">2 dias completos</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="tipo">Tipo de evento</label>
+          <select id="tipo_evento" name="tipo" required>
+            <option value="">Selecciona tipo de evento</option>
+            <option value="boda">Boda</option>
+            <option value="corporativo">Evento Corporativo</option>
+            <option value="social">Evento Social</option>
+            <option value="cumpleanos">Cumpleaños</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="tematica">Temática del evento (Opcional)</label>
+          <input type="text" id="tematica" name="tematica" placeholder="Ej: Vintage, Tropical, Formal...">
+        </div>
+        
+        <div class="form-group">
+          <label for="hacienda">Selecciona una hacienda</label>
+          <div class="haciendas-options" role="radiogroup" aria-labelledby="hacienda-label">
+            <div class="hacienda-card" data-value="1" tabindex="0" role="radio" aria-checked="false">
+              <div class="hacienda-image">
+                <img src="../Imagenes/Finca_1.jpg" alt="Hacienda Sol - Vista frontal">
+                <div class="select-overlay"><i class="fas fa-check" aria-hidden="true"></i></div>
+              </div>
+              <h3>El Paraiso Escondido</h3>
+              <p>Capacidad: 150 personas</p>
+              <div class="hacienda-features">
+                <span><i class="fas fa-swimming-pool" aria-hidden="true"></i> Piscina</span>
+                <span><i class="fas fa-utensils" aria-hidden="true"></i> Cocina</span>
+                <span><i class="fas fa-parking" aria-hidden="true"></i> Parqueadero</span>
+              </div>
+            </div>
+            
+            <div class="hacienda-card" data-value="2" tabindex="0" role="radio" aria-checked="false">
+              <div class="hacienda-image">
+                <img src="../Imagenes/2.jpeg" alt="Jardín de Eventos - Área verde">
+                <div class="select-overlay"><i class="fas fa-check" aria-hidden="true"></i></div>
+              </div>
+              <h3>Los Jardines Del Sol</h3>
+              <p>Capacidad: 200 personas</p>
+              <div class="hacienda-features">
+                <span><i class="fas fa-tree" aria-hidden="true"></i> Jardines</span>
+                <span><i class="fas fa-umbrella-beach" aria-hidden="true"></i> Terraza</span>
+                <span><i class="fas fa-music" aria-hidden="true"></i> Sonido</span>
+              </div>
+            </div>
+            
+            <div class="hacienda-card" data-value="3" tabindex="0" role="radio" aria-checked="false">
+              <div class="hacienda-image">
+                <img src="../Imagenes/3.jpeg" alt="Hacienda La Montaña - Vista panorámica">
+                <div class="select-overlay"><i class="fas fa-check" aria-hidden="true"></i></div>
+              </div>
+              <h3>El Encanto Natural</h3>
+              <p>Capacidad: 100 - 200 personas</p>
+              <div class="hacienda-features">
+                <span><i class="fas fa-mountain" aria-hidden="true"></i> Vistas</span>
+                <span><i class="fas fa-fire" aria-hidden="true"></i> Chimenea</span>
+                <span><i class="fas fa-hotel" aria-hidden="true"></i> Hospedaje</span>
+              </div>
+            </div>
+            
+            <div class="hacienda-card" data-value="4" tabindex="0" role="radio" aria-checked="false">
+              <div class="hacienda-image">
+                <img src="../Imagenes/Finca_4.jpg" alt="El Encanto Natural - Zona natural">
+                <div class="select-overlay"><i class="fas fa-check" aria-hidden="true"></i></div>
+              </div>
+              <h3>Hacienda La Montaña</h3>
+              <p>Capacidad: 450 personas</p>
+              <div class="hacienda-features">
+                <span><i class="fas fa-water" aria-hidden="true"></i> Río</span>
+                <span><i class="fas fa-campground" aria-hidden="true"></i> Zona camping</span>
+                <span><i class="fas fa-horse" aria-hidden="true"></i> Caballos</span>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="FK_id_hacienda" name="hacienda" required>
+        </div>
+      </form>
+      
+      <div class="section-footer">
+        <button class="btn btn-outline-secondary btn-prev" id="back-to-info">
+          <i class="fas fa-arrow-left me-2" aria-hidden="true"></i> Anterior
+        </button>
+        <button class="btn btn-primary btn-next" id="next-to-decoration">
+          Siguiente <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Paso 4: Decoración y Servicios -->
+    <section class="planning-section" id="step4" style="display: none;" aria-labelledby="decoration-heading">
+      <div class="row g-4">
+        <!-- Apartado Decoración -->
+        <div class="col-lg-6">
+          <section class="decoration-section" aria-labelledby="decoration-heading">
+            <div class="section-header">
+              <h2 class="section-title" id="decoration-heading">Estilos de Decoración</h2>
+              <p class="section-subtitle">Selecciona el estilo que mejor se adapte a tu evento</p>
+            </div>
+            <div class="decoration-options">
+              <!-- Opción Temático y Personalizado -->
+              <div class="decoration-card" data-value="1">
+                <div class="decoration-image">
+                  <img src="../Imagenes/deco_1.jpeg" alt="Temático y Personalizado">
+                  <div class="price-tag">$2,500,000</div>
+                </div>
+                <div class="decoration-details">
+                  <h3>Temático y Personalizado</h3>
+                  <ul class="decoration-features">
+                    <li><i class="fas fa-palette"></i> <strong>Colores:</strong> Varian según la temática (rojo/negro para Hollywood, azul/plateado para gala espacial)</li>
+                    <li><i class="fas fa-tshirt"></i> <strong>Manteles y servilletas:</strong> Diseños personalizados con estampados y texturas específicas</li>
+                    <li><i class="fas fa-utensils"></i> <strong>Platos y cubiertos:</strong> Vajilla especial con motivos según tema</li>
+                    <li><i class="fas fa-lightbulb"></i> <strong>Iluminación:</strong> Luces personalizadas, neón, focos de colores</li>
+                    <li><i class="fas fa-star"></i> <strong>Decoración adicional:</strong> Elementos icónicos del tema, fondos para fotos</li>
+                  </ul>
+                  <p class="ideal-for"><i class="fas fa-heart"></i> <strong>Ideal para:</strong> Fiestas temáticas, cumpleaños, aniversarios, celebraciones creativas</p>
+                  <button class="btn-select">Seleccionar <i class="fas fa-check-circle"></i></button>
+                </div>
+              </div>
+              
+              <!-- Opción Glamuroso y Extravagante -->
+              <div class="decoration-card" data-value="2">
+                <div class="decoration-image">
+                  <img src="../Imagenes/deco_2.jpeg" alt="Glamuroso y Extravagante">
+                  <div class="price-tag">$1,800,000</div>
+                </div>
+                <div class="decoration-details">
+                  <h3>Glamuroso y Extravagante</h3>
+                  <ul class="decoration-features">
+                    <li><i class="fas fa-palette"></i> <strong>Colores:</strong> Dorado, plateado, negro, rojo, tonos metálicos</li>
+                    <li><i class="fas fa-tshirt"></i> <strong>Manteles y servilletas:</strong> Telas con brillo, lentejuelas, terciopelo o seda vibrante</li>
+                    <li><i class="fas fa-utensils"></i> <strong>Platos y cubiertos:</strong> Vajilla con detalles dorados/plateados, cubiertos exclusivos</li>
+                    <li><i class="fas fa-lightbulb"></i> <strong>Iluminación:</strong> Candelabros de cristal, lámparas de araña, luces LED especiales</li>
+                    <li><i class="fas fa-star"></i> <strong>Decoración adicional:</strong> Centros con cristales, espejos, arreglos florales grandes</li>
+                  </ul>
+                  <p class="ideal-for"><i class="fas fa-heart"></i> <strong>Ideal para:</strong> Galas, eventos de lujo, fiestas exclusivas</p>
+                  <button class="btn-select">Seleccionar <i class="fas fa-check-circle"></i></button>
+                </div>
+              </div>
+              
+              <!-- Opción Clásico y Elegante -->
+              <div class="decoration-card" data-value="3">
+                <div class="decoration-image">
+                  <img src="../Imagenes/deco_3.jpeg" alt="Clásico y Elegante">
+                  <div class="price-tag">$1,700,000</div>
+                </div>
+                <div class="decoration-details">
+                  <h3>Clásico y Elegante</h3>
+                  <ul class="decoration-features">
+                    <li><i class="fas fa-palette"></i> <strong>Colores:</strong> Blanco, dorado, plateado, marfil, tonos pastel</li>
+                    <li><i class="fas fa-tshirt"></i> <strong>Manteles y servilletas:</strong> Satén o lino con bordados o encajes</li>
+                    <li><i class="fas fa-utensils"></i> <strong>Platos y cubiertos:</strong> Porcelana con detalles en oro/plata, acero pulido</li>
+                    <li><i class="fas fa-lightbulb"></i> <strong>Iluminación:</strong> Candelabros, velas, luces cálidas</li>
+                    <li><i class="fas fa-star"></i> <strong>Decoración adicional:</strong> Flores naturales, cristalería refinada</li>
+                  </ul>
+                  <p class="ideal-for"><i class="fas fa-heart"></i> <strong>Ideal para:</strong> Bodas, cenas de gala, eventos corporativos</p>
+                  <button class="btn-select">Seleccionar <i class="fas fa-check-circle"></i></button>
+                </div>
+              </div>
+              
+              <!-- Opción Rústico y Natural -->
+              <div class="decoration-card" data-value="4">
+                <div class="decoration-image">
+                  <img src="../Imagenes/deco_4.jpeg" alt="Rústico y Natural">
+                  <div class="price-tag">$1,700,000</div>
+                </div>
+                <div class="decoration-details">
+                  <h3>Rústico y Natural</h3>
+                  <ul class="decoration-features">
+                    <li><i class="fas fa-palette"></i> <strong>Colores:</strong> Tonos tierra, beige, verde oliva, madera natural</li>
+                    <li><i class="fas fa-tshirt"></i> <strong>Manteles y servilletas:</strong> Yute, lino o algodón en colores cálidos</li>
+                    <li><i class="fas fa-utensils"></i> <strong>Platos y cubiertos:</strong> Cerámica artesanal, bambú o acero mate</li>
+                    <li><i class="fas fa-lightbulb"></i> <strong>Iluminación:</strong> Guirnaldas, velas en frascos, faroles</li>
+                    <li><i class="fas fa-star"></i> <strong>Decoración adicional:</strong> Troncos, follaje, flores silvestres</li>
+                  </ul>
+                  <p class="ideal-for"><i class="fas fa-heart"></i> <strong>Ideal para:</strong> Bodas al aire libre, eventos campestres</p>
+                  <button class="btn-select">Seleccionar <i class="fas fa-check-circle"></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!-- Apartado Servicios -->
+        <div class="col-lg-6">
+          <section class="services-section" aria-labelledby="services-heading">
+            <div class="section-header">
+              <h2 class="section-title" id="services-heading">Servicios Adicionales</h2>
+              <p class="section-subtitle">Complementa tu evento con estos servicios especiales</p>
+            </div>
+            <div class="services-options">
+              <!-- Servicio de Fotografía -->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-camera"></i>
+                </div>
+                <div class="service-details">
+                  <h3>Fotografía y Video Profesional</h3>
+                  <p class="service-description">Captura los momentos más importantes con nuestro equipo profesional de fotografía y video.</p>
+                  <div class="service-features">
+                    <span><i class="fas fa-check-circle"></i> Sesión previa</span>
+                    <span><i class="fas fa-check-circle"></i> Edición profesional</span>
+                    <span><i class="fas fa-check-circle"></i> Álbum digital</span>
+                  </div>
+                  <div class="service-actions">
+                    <button class="btn-add">Añadir <i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Servicio de DJ -->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <div class="service-details">
+                  <h3>DJ y Música en Vivo</h3>
+                  <p class="service-description">Ambienta tu evento con la mejor selección musical o artistas en vivo.</p>
+                  <div class="service-features">
+                    <span><i class="fas fa-check-circle"></i> Equipo de sonido</span>
+                    <span><i class="fas fa-check-circle"></i> Lista personalizada</span>
+                    <span><i class="fas fa-check-circle"></i> Efectos de luces</span>
+                  </div>
+                  <div class="service-actions">
+                    <button class="btn-add">Añadir <i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Servicio de Catering -->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-utensils"></i>
+                </div>
+                <div class="service-details">
+                  <h3>Catering y Banquete</h3>
+                  <p class="service-description">Menú gourmet adaptado a tus necesidades y preferencias alimenticias.</p>
+                  <div class="service-features">
+                    <span><i class="fas fa-check-circle"></i> Chef profesional</span>
+                    <span><i class="fas fa-check-circle"></i> Variedad de menús</span>
+                    <span><i class="fas fa-check-circle"></i> Servicio de meseros</span>
+                  </div>
+                  <div class="service-actions">
+                    <button class="btn-add" data-value="5">Añadir <i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Servicio de Transporte -->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-bus"></i>
+                </div>
+                <div class="service-details">
+                  <h3>Transporte para Invitados</h3>
+                  <p class="service-description">Servicio de transporte seguro y cómodo para tus invitados.</p>
+                  <div class="service-features">
+                    <span><i class="fas fa-check-circle"></i> Vehículos ejecutivos</span>
+                    <span><i class="fas fa-check-circle"></i> Rutas personalizadas</span>
+                    <span><i class="fas fa-check-circle"></i> Chofer profesional</span>
+                  </div>
+                  <div class="service-actions">
+                    <button class="btn-add">Añadir <i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Servicio de Souvenirs -->
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="service-details">
+                  <h3>Kit de Recuerdos</h3>
+                  <p class="service-description">Diseños personalizados de souvenirs para tus invitados.</p>
+                  <div class="service-features">
+                    <span><i class="fas fa-check-circle"></i> Diseño exclusivo</span>
+                    <span><i class="fas fa-check-circle"></i> Variedad de productos</span>
+                    <span><i class="fas fa-check-circle"></i> Empaque premium</span>
+                  </div>
+                  <div class="service-actions">
+                    <button class="btn-add">Añadir <i class="fas fa-plus"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- Resumen y Total -->
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+          <section class="summary-section" aria-labelledby="summary-heading">
+            <div class="section-header text-center">
+              <h2 class="section-title" id="summary-heading">Resumen de tu Selección</h2>
+              <p class="section-subtitle">Verifica tu decoración, servicios y el total a pagar</p>
+            </div>
+            <div class="services-summary">
+              <div class="summary-items">
+                <p>No has seleccionado servicios ni decoración aún</p>
+              </div>
+              <div class="summary-total d-flex justify-content-between align-items-center mt-3">
+                <span class="fw-bold">Total:</span>
+                <span class="fw-bold">$0</span>
+              </div>
+              <div class="d-grid gap-2 mt-4">
+                <a href="../Factura_pago/Factura.html" class="btn btn-primary btn-lg btn-continue">
+                  Ir a Factura y Pago <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="section-footer mt-5">
+        <button class="btn btn-outline-secondary btn-prev" id="back-to-event">
+          <i class="fas fa-arrow-left me-2" aria-hidden="true"></i> Anterior
+        </button>
+        <!-- Quitar el botón de Finalizar Reserva -->
+        <!-- <button class="btn btn-primary" id="submit-reservation">
+          Finalizar Reserva <i class="fas fa-paper-plane ms-2" aria-hidden="true"></i>
+        </button> -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Mensaje de Confirmación -->
+  <div class="confirmation-message" role="status" aria-live="polite">
+    <div class="container">
+      <div class="message-box">
+        <i class="fas fa-info-circle" aria-hidden="true"></i>
+        <p>Después de completar tu reserva, nos pondremos en contacto contigo para confirmar todos los detalles y aclarar cualquier duda que puedas tener. ¡Estamos aquí para hacer de tu evento algo inolvidable!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h2 class="h5 d-flex align-items-center">
+            <i class="fas fa-crown me-2" aria-hidden="true"></i>Elite Eventos
+          </h2>
+          <p class="mt-3">Transformando sueños en experiencias memorables desde 2010.</p>
+          <div class="social-icons mt-3">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h3 class="h6">Ubicación</h3>
+          <p class="mt-3">
+            <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Cl. 25 #127-220, Barrio Pance, Cali, Valle del Cauca
+          </p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.647284090291!2d-76.555589!3d3.424757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjUnMjkuMSJOIDc2wrAzMycyMC4xIlc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" title="Ubicación de Elite Eventos"></iframe>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h3 class="h6">Contacto</h3>
+          <address class="mt-3">
+            <i class="fas fa-envelope me-2" aria-hidden="true"></i>info@eliteeventos.com<br>
+            <i class="fas fa-phone me-2" aria-hidden="true"></i>(57) 312 691 5311
+          </address>
+        </div>
+      </div>
+    </div>
+    <div class="copyright py-3 text-center">
+      <p class="mb-0 small">© 2023 Elite Eventos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="Opciones.js"></script>
+</body>
+</html>

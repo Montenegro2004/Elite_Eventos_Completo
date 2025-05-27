@@ -1,0 +1,241 @@
+/* CSS mejorado para Haciendas */
+:root {
+  --primary-color: #8e6c88;
+  --secondary-color: #d4b483;
+  --dark-color: #333;
+  --light-color: #f8f9fa;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--dark-color);
+  padding-top: 80px;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+  transition: all 0.3s ease;
+  padding: 15px 0;
+  background-color: white !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled {
+  padding: 10px 0;
+}
+
+.navbar .btn-outline-dark {
+  border: 1px solid var(--dark-color);
+}
+
+.navbar .btn-outline-dark:hover {
+  background-color: var(--dark-color);
+  color: white;
+}
+
+.navbar .btn-dark {
+  background-color: var(--dark-color);
+}
+
+.navbar .btn-dark:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Hero Section */
+.haciendas-hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.haciendas-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.haciendas-hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Section Titles */
+.section-title {
+  position: relative;
+  padding-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--secondary-color);
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Cards */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.price-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--dark-color);
+}
+
+.card-features {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: rgba(142, 108, 136, 0.05);
+}
+
+.cta-section h2 {
+  color: var(--primary-color);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-color);
+  color: white;
+}
+
+.footer h5, .footer h6 {
+  color: white;
+}
+
+.footer a {
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+  
+  .haciendas-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .haciendas-hero p {
+    font-size: 1rem;
+  }
+  
+  .card-features {
+    flex-direction: column;
+  }
+  
+  .card-features span {
+    margin-bottom: 5px;
+  }
+}

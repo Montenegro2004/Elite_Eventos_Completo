@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Método de Pago - Elite Eventos</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #8e6c88;
+      --primary-light: #b28fac;
+      --secondary: #d4b483;
+      --dark: #333333;
+      --light: #f8f9fa;
+      --gray: #e0e0e0;
+      --danger: #dc3545;
+      --success: #28a745;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* Header Premium */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .logo:hover .logo-text {
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--primary);
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid var(--primary);
+    }
+
+    .nav-btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+    }
+
+    .nav-btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8rem 3rem 3rem;
+      gap: 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .form-section {
+      flex: 1;
+      background-color: var(--white);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      max-width: 1000px; /* Mucho más ancho */
+      margin: 0 auto;
+      min-width: 1000px;   /* Mucho más ancho */
+    }
+
+    .form-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+
+    .form-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .form-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .form-section h2 span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--dark);
+    }
+
+    /* Campos del formulario */
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+    }
+
+    .field label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .field label i {
+      color: var(--primary-light);
+    }
+
+    .field label span {
+      font-weight: 400;
+      color: var(--danger);
+      font-size: 0.9rem;
+      margin-left: 0.3rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--gray);
+      border-radius: 10px;
+      background-color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(142, 108, 136, 0.2);
+    }
+
+    /* Opciones de pago */
+    .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      justify-content: center;
+      background: #f5f2f7;
+      border-radius: 10px;
+      padding: 1rem 0.5rem;
+    }
+
+    .payment-options button {
+      flex: 1 1 40%;
+      min-width: 120px;
+      max-width: 180px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      border: 1.5px solid var(--gray);
+      background-color: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(142, 108, 136, 0.06);
+    }
+
+    .payment-options button.active {
+      background-color: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(142, 108, 136, 0.15);
+      transform: scale(1.05);
+    }
+
+    .payment-options button:hover:not(.active) {
+      background-color: var(--primary-light);
+      color: var(--white);
+      border-color: var(--primary-light);
+    }
+
+    .payment-options button i {
+      font-size: 1.2rem;
+    }
+
+    /* Campos agrupados */
+    .group-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    /* Resumen de pago */
+    .resumen-pago {
+      background-color: rgba(212, 180, 131, 0.1);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .resumen-pago h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .resumen-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+
+    .resumen-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-top: 1px solid var(--gray);
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    /* Botón de pago */
+    .btn-pagar {
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      color: var(--white);
+      border: none;
+      padding: 1.2rem 2rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      box-shadow: 0 4px 15px rgba(142, 108, 136, 0.3);
+    }
+
+    .btn-pagar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(142, 108, 136, 0.4);
+    }
+
+    /* Sección de imagen */
+    .image-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .image-section img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .image-section:hover img {
+      transform: scale(1.02);
+    }
+
+    .image-decoration {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: rgba(212, 180, 131, 0.3);
+      z-index: -1;
+    }
+
+    .decoration-1 {
+      top: -30px;
+      left: -30px;
+    }
+
+    .decoration-2 {
+      bottom: -30px;
+      right: -30px;
+    }
+
+    /* Tarjeta de crédito */
+    .card-preview {
+      background: linear-gradient(135deg, #8e6c88, #b28fac);
+      border-radius: 15px;
+      padding: 1.5rem;
+      color: white;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .card-preview::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .card-chip {
+      width: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-number {
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-name {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .card-expiry {
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .container {
+        flex-direction: column;
+        padding: 7rem 2rem 2rem;
+      }
+
+      .form-section {
+        max-width: 100%;
+      }
+
+      .image-section {
+        margin-top: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      nav {
+        gap: 1rem;
+      }
+
+      .form-section {
+        padding: 2rem;
+      }
+
+      .form-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .group-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-options {
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+
+      .payment-options button {
+        min-width: 100px;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .container {
+        padding: 8rem 1rem 1rem;
+      }
+
+      .form-section {
+        padding: 1.5rem;
+      }
+
+      .payment-options {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+
+      .payment-options button {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="logo">
+      <i class="fas fa-crown logo-icon"></i>
+      <span class="logo-text">Elite Eventos</span>
+    </a>
+    
+    <nav>
+    
+      <a href="../Haciendas.html"><i class="fas fa-map-marked-alt"></i> Haciendas</a>
+ 
+    
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Formulario de búsqueda de reserva -->
+    <form id="busquedaReservaForm" style="width:100%;margin-bottom:2rem;">
+      <div class="field" style="max-width:400px;">
+        <label><i class="fas fa-search"></i> Buscar reserva por nombre y apellido <span>(obligatorio)</span></label>
+        <input type="text" id="nombreBusqueda" placeholder="Ej: Sam Montenegro" required>
+      </div>
+      <button type="submit" class="btn-pagar" style="max-width:200px;">
+        <i class="fas fa-search"></i> Buscar
+      </button>
+    </form>
+
+    <form class="form-section" id="formPago" style="display:none;">
+      <h2>Método de Pago <span>- Mis Reservas</span></h2>
+      
+      <!-- Resumen del pedido -->
+      <div class="resumen-pago">
+        <h3><i class="fas fa-receipt"></i> Resumen de tu pedido</h3>
+        <div class="resumen-item">
+          <span>Nombre:</span>
+          <span id="resumenNombre">-</span>
+        </div>
+        <div class="resumen-item">
+          <span>Correo:</span>
+          <span id="resumenCorreo">-</span>
+        </div>
+        <div class="resumen-item">
+          <span>Teléfono:</span>
+          <span id="resumenTelefono">-</span>
+        </div>
+        <div class="resumen-item">
+          <span>Valor de la hacienda:</span>
+          <span id="valorHacienda">$0</span>
+        </div>
+        <div class="resumen-item">
+          <span>Decoración seleccionada:</span>
+          <span id="valorDecoracion">$0</span>
+        </div>
+        <div class="resumen-item">
+          <span>Servicios adicionales:</span>
+          <span id="valorServicios">$0</span>
+        </div>
+        <div class="resumen-item">
+          <span>Impuestos:</span>
+          <span id="valorImpuestos">$0</span>
+        </div>
+        <div class="resumen-item resumen-total">
+          <span>TOTAL:</span>
+          <span id="valorTotal">$0</span>
+        </div>
+      </div>
+
+      <!-- Plan de pago -->
+      <div class="field">
+        <label><i class="fas fa-calendar-alt"></i> Plan de pago <span>(obligatorio)</span></label>
+        <select id="planPago" name="planPago" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="completo">Pago completo (25% descuento)</option>
+          <option value="inicial">Pago inicial (15% descuento)</option>
+        </select>
+      </div>
+
+      <!-- Total a pagar -->
+      <div class="field">
+        <label><i class="fas fa-money-bill-wave"></i> TOTAL A PAGAR</label>
+        <input type="text" id="totalPagar" name="totalPagar" value="$0" readonly>
+      </div>
+
+      <!-- Opciones de pago -->
+      <div class="field">
+        <label><i class="fas fa-credit-card"></i> Método de Pago <span>(obligatorio)</span></label>
+        <div class="payment-options">
+          <button type="button" class="active" data-metodo="Efectivo"><i class="fas fa-money-bill"></i> Efectivo</button>
+          <button type="button" data-metodo="Débito"><i class="fas fa-credit-card"></i> Débito</button>
+          <button type="button" data-metodo="Crédito"><i class="fas fa-credit-card"></i> Crédito</button>
+          <button type="button" data-metodo="Transferencia"><i class="fas fa-university"></i> Transferencia</button>
+        </div>
+        <input type="hidden" id="metodoPago" name="metodoPago" value="Efectivo">
+      </div>
+
+      <!-- Vista previa de tarjeta -->
+      <div class="card-preview">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Chip" class="card-chip">
+        <div class="card-number">•••• •••• •••• 4242</div>
+        <div class="card-details">
+          <div class="card-name">NOMBRE TITULAR</div>
+          <div class="card-expiry">MM/AA</div>
+        </div>
+      </div>
+
+      <!-- Datos de tarjeta -->
+      <div class="field">
+        <label><i class="fas fa-user"></i> Nombre del Titular <span>(obligatorio)</span></label>
+        <input type="text" id="nombreTitular" name="nombreTitular" required>
+      </div>
+
+      <div class="field">
+        <label><i class="fas fa-credit-card"></i> Número de Tarjeta <span>(obligatorio)</span></label>
+        <input type="text" id="numeroTarjeta" name="numeroTarjeta" placeholder="1234 5678 9012 3456" required>
+      </div>
+
+      <div class="field group-3">
+        <div class="field">
+          <label><i class="fas fa-calendar"></i> Fecha Exp. <span>(obligatorio)</span></label>
+          <input type="text" id="fechaExpiracion" name="fechaExpiracion" placeholder="MM/AA" required>
+        </div>
+        <div class="field">
+          <label><i class="fas fa-lock"></i> CVV <span>(obligatorio)</span></label>
+          <input type="text" id="cvv" name="cvv" placeholder="123" required>
+        </div>
+        <div class="field" style="display: flex; gap: 0.5rem; align-items: flex-end;">
+          <div style="flex:1;">
+            <label><i class="fas fa-id-card"></i> Tipo Doc. <span>(obligatorio)</span></label>
+            <select id="tipoDocumento" name="tipoDocumento" required>
+              <option value="cc">C.C.</option>
+              <option value="ce">C.E.</option>
+              <option value="pasaporte">Pasaporte</option>
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label>Número de identificacion <span>(obligatorio)</span></label>
+            <input type="text" id="numeroDocumento" name="numeroDocumento" required>
+          </div> 
+        </div>
+      </div>
+
+      <!-- Dirección -->
+      <div class="field">
+        <label><i class="fas fa-map-marker-alt"></i> Dirección <span>(obligatorio)</span></label>
+        <select id="pais" name="pais" required>
+          <option value="colombia">Colombia</option>
+          <option value="mexico">México</option>
+          <option value="chile">Chile</option>
+        </select>
+        <input type="text" id="direccion1" name="direccion1" placeholder="Dirección línea 1" required>
+        <input type="text" id="direccion2" name="direccion2" placeholder="Dirección línea 2 (opcional)">
+      </div>
+
+      <div class="field group-3">
+        <div class="field">
+          <label><i class="fas fa-city"></i> Ciudad <span>(obligatorio)</span></label>
+          <input type="text" id="ciudad" name="ciudad" required>
+        </div>
+        <div class="field">
+          <label><i class="fas fa-building"></i> Departamento <span>(obligatorio)</span></label>
+          <input type="text" id="departamento" name="departamento" required>
+        </div>
+        <div class="field">
+          <label><i class="fas fa-mail-bulk"></i> Código Postal</label>
+          <input type="text" id="codigoPostal" name="codigoPostal">
+        </div>
+      </div>
+
+      <!-- Términos y condiciones -->
+      <div class="field" style="margin-top: 2rem;">
+        <label style="font-weight: normal;">
+          <input type="checkbox" id="terminos" required style="margin-right: 0.5rem;">
+          Acepto los <a href="#" style="color: var(--primary);">Términos y Condiciones</a> y la <a href="#" style="color: var(--primary);">Política de Privacidad</a>
+        </label>
+      </div>
+
+      <input type="hidden" id="idReserva" name="idReserva">
+      <input type="hidden" id="valorHaciendaHidden" name="valorHacienda">
+      <input type="hidden" id="valorDecoracionHidden" name="valorDecoracion">
+      <input type="hidden" id="valorServiciosHidden" name="valorServicios">
+      <input type="hidden" id="valorImpuestosHidden" name="valorImpuestos">
+      <input type="hidden" id="valorTotalHidden" name="valorTotal">
+
+      <button type="submit" class="btn-pagar">
+        <i class="fas fa-lock"></i> Confirmar Pago
+      </button>
+    </form>
+
+    <section class="image-section">
+      <div class="image-decoration decoration-1"></div>
+      <div class="image-decoration decoration-2"></div>
+      <img src="../Imagenes/3.4.jpg" alt="Evento de lujo">
+    </section>
+  </main>
+
+  <script src="Metodo_pago.js"></script>
+</body>
+</html>

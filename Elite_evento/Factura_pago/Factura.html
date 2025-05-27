@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumen del Pedido - Elite Eventos</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Factura.css">
+  <script defer src="Factura.js"></script>
+</head>
+<body>
+  <header>
+    <a href="../index.html" class="logo">
+      <i class="fas fa-crown logo-icon"></i>
+      <span class="logo-text">Elite Eventos</span>
+    </a>
+    <nav>
+      <a href="../Haciendas.html"><i class="fas fa-map-marked-alt"></i> Haciendas</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="content" style="width:100%;max-width:700px;margin:0 auto;">
+      <h2><i class="fas fa-file-invoice-dollar"></i> Resumen de la Reserva</h2>
+      <form id="busquedaUsuarioForm" style="margin-bottom:2rem;">
+        <div class="field">
+          <label><i class="fas fa-user"></i> Nombre del Cliente</label>
+          <input type="text" id="nombreBusqueda" name="nombreBusqueda" placeholder="Ingresa el nombre del cliente" required>
+        </div>
+        <button type="submit" class="boton"><i class="fas fa-search"></i> Buscar</button>
+      </form>
+      <div id="facturaDetalle"></div>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a class="boton" href="Metodo_pago.html" id="btnPagar" style="display:none;">
+          <i class="fas fa-check-circle"></i> Confirmar Reserva y Pagar
+        </a>
+        <button type="button" class="boton" id="btnActualizar" style="display:none;background:linear-gradient(90deg,#bfa36c 60%,#8e6c88 100%);">
+          <i class="fas fa-edit"></i> Actualizar Reserva
+        </button>
+        <button type="button" class="boton" id="btnEliminar" style="display:none;background:linear-gradient(90deg,#e74c3c 60%,#d4b483 100%);">
+          <i class="fas fa-trash"></i> Eliminar Reserva
+        </button>
+      </div>
+    </section>
+    <section class="image-section">
+      <div class="image-decoration decoration-1"></div>
+      <div class="image-decoration decoration-2"></div>
+      <img src="../Imagenes/3.4.jpg" alt="Evento de lujo">
+    </section>
+  </main>
+</body>
+</html>

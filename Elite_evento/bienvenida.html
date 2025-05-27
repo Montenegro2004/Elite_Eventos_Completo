@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Eventos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="bienvenida.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3 fw-bold" href="index.html">
+        <i class="fas fa-crown me-2"></i>Elite Eventos
+      </a>
+      <div class="ms-auto d-flex gap-3">
+        <a href="#" class="btn btn-outline-dark rounded-pill px-3">Mis Eventos</a>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle me-1"></i> Mi Cuenta
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Perfil</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configuración</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="welcome-hero text-white text-center d-flex align-items-center justify-content-center">
+    <div class="hero-overlay">
+      <div class="container">
+        <h1 class="hero-title mb-4">Te damos la bienvenida a casa</h1>
+        <p class="hero-subtitle">Estamos encantados de tenerte con nosotros</p>
+        <div class="welcome-badge">
+          <i class="fas fa-star me-2"></i>Miembro desde 2023
+        </div>
+      </div>
+    </div>
+    <div class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Sección de tarjetas -->
+  <section class="container py-5 my-5">
+    <h2 class="section-title text-center mb-5">Tus próximos pasos</h2>
+    
+    <div class="row justify-content-center g-4">
+
+      <!-- Tarjeta izquierda -->
+      <div class="col-lg-5">
+        <div class="welcome-card completed">
+          <div class="card-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="card-status">
+            <span class="badge bg-success"><i class="fas fa-check me-1"></i> Completado</span>
+          </div>
+          <h3 class="card-title">Configuración de tu Evento</h3>
+          <p class="card-text">
+            ¡Felicidades! Has completado la planificación de tu evento, ahora es el momento de revisar cada detalle para asegurarnos de que todo esté perfectamente alineado con tus expectativas.
+          </p>
+          <div class="card-progress">
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+            </div>
+            <small>100% completado</small>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn btn-primary rounded-pill px-4">
+              Ver Detalles <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta derecha -->
+      <div class="col-lg-5">
+        <div class="welcome-card pending">
+          <div class="card-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="card-status">
+            <span class="badge bg-warning text-dark"><i class="fas fa-exclamation me-1"></i> Pendiente</span>
+          </div>
+          <h3 class="card-title">Creación de tu Evento</h3>
+          <p class="card-text">
+            Has dado un gran paso en la planificación de tu evento, pero aún quedan detalles por definir. No dejes tu celebración a medias, continúa personalizando cada aspecto.
+          </p>
+          <div class="card-progress">
+            <div class="progress" style="height: 6px;">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"></div>
+            </div>
+            <small>40% completado</small>
+          </div>
+          <div class="card-actions">
+            <a href="#" class="btn btn-primary rounded-pill px-4">
+              Continuar <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sección de bienvenida -->
+  <section class="welcome-message py-5 bg-light">
+    <div class="container text-center py-4">
+      <div class="welcome-icon mb-4">
+        <i class="fas fa-glass-cheers"></i>
+      </div>
+      <h2 class="mb-3">Comienza tu experiencia Elite</h2>
+      <p class="mb-4">Estamos aquí para ayudarte a crear eventos extraordinarios. Explora nuestras herramientas exclusivas para miembros.</p>
+      <div class="d-flex justify-content-center gap-3">
+        
+        <a href="#" class="btn btn-primary rounded-pill px-4">Crear nuevo evento</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5 class="d-flex align-items-center">
+            <i class="fas fa-crown me-2"></i>Elite Eventos
+          </h5>
+          <p class="mt-3">Transformando sueños en experiencias memorables desde 2010.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h6>Ubicación</h6>
+          <p class="mt-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Cl. 25 #127-220, Barrio Pance, Cali, Valle del Cauca
+          </p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.647284090291!2d-76.555589!3d3.424757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjUnMjkuMSJOIDc2wrAzMycyMC4xIlc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h6>Contacto</h6>
+          <p class="mt-3">
+            <i class="fas fa-envelope me-2"></i>saamuel009@gmail.com<br>
+            <i class="fas fa-phone me-2"></i>(57) 312 691 5311
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="copyright py-3 text-center">
+      <p class="mb-0 small">© 2023 Elite Eventos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Efecto de navbar al hacer scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>

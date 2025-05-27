@@ -1,0 +1,551 @@
+/* CSS para Página de Hacienda */
+:root {
+  --primary-color: #8e6c88;
+  --secondary-color: #d4b483;
+  --dark-color: #333;
+  --light-color: #f8f9fa;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--dark-color);
+  padding-top: 80px;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+  transition: all 0.3s ease;
+  padding: 15px 0;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-icon {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--dark-color);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  color: var(--dark-color) !important;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0 !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #7a5b75;
+  border-color: #7a5b75;
+}
+
+/* Hero Section */
+.hacienda-hero {
+  height: 60vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Migas de pan */
+.breadcrumb {
+  background-color: transparent;
+  padding: 0;
+}
+
+.breadcrumb-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: var(--dark-color);
+}
+
+/* Galería de imágenes */
+.hacienda-gallery {
+  margin-bottom: 40px;
+}
+
+.main-image {
+  margin-bottom: 15px;
+}
+
+.main-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-container {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.thumbnail.active {
+  border-color: var(--primary-color);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Secciones */
+.section-title {
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--secondary-color);
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+}
+
+/* Lista de características */
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.feature-list i {
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+
+/* Tarjeta de reserva */
+.booking-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: sticky;
+  top: 100px;
+}
+
+.booking-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.booking-header h3 {
+  margin-bottom: 5px;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.price small {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.booking-body {
+  padding: 25px;
+}
+
+.booking-feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.booking-feature i {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(142, 108, 136, 0.1);
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.1rem;
+}
+
+.booking-feature h5 {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.booking-feature p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.availability-calendar {
+  margin: 30px 0;
+}
+
+.calendar-placeholder {
+  height: 200px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.btn-book {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.contact-option {
+  text-align: center;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* Servicios */
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.service-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(142, 108, 136, 0.1);
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 15px;
+}
+
+.service-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Testimonios */
+.testimonials-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.testimonials-card h4 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.testimonial {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.testimonial:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.testimonial-text {
+  font-style: italic;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.testimonial-text::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2rem;
+  color: var(--secondary-color);
+  opacity: 0.3;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-author img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.testimonial-author h6 {
+  margin-bottom: 5px;
+}
+
+.testimonial-author small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Haciendas similares */
+.similar-haciendas {
+  margin-top: 80px;
+  padding-top: 50px;
+  border-top: 1px solid #eee;
+}
+
+.hacienda-card {
+  background-color: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.hacienda-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hacienda-info {
+  padding: 20px;
+}
+
+.hacienda-info h4 {
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.features i {
+  margin-right: 5px;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-color);
+  color: white;
+  margin-top: 80px;
+}
+
+.footer h5, .footer h6 {
+  color: white;
+}
+
+.footer a {
+  color: var(--secondary-color);
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+}
+
+.copyright {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hacienda-hero {
+    height: 50vh;
+  }
+  
+  .main-image img {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hacienda-hero {
+    height: 40vh;
+    margin-bottom: 30px;
+  }
+  
+  .main-image img {
+    height: 300px;
+  }
+  
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .booking-card {
+    margin-bottom: 40px;
+  }
+}

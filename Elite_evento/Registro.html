@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Eventos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="registro.css">
+  <style>
+    #btn-registro {
+      transition: all 0.3s ease;
+    }
+    #btn-registro:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    #btn-registro:active {
+      transform: translateY(0);
+    }
+    .mensaje-flotante {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeOut {
+      from {opacity: 1;}
+      to {opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3 fw-bold" href="index.html">
+        <i class="fas fa-crown me-2"></i>Elite Eventos
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="registro-hero">
+    <div class="hero-content">
+      <h1>Únete a Elite Eventos</h1>
+      <p class="lead">Comienza a crear experiencias inolvidables</p>
+    </div>
+  </div>
+
+  <!-- Registro -->
+  <section class="container my-5 py-5">
+    <div class="row align-items-center">
+      <!-- Imagen -->
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="image-container">
+          <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evento elegante" class="img-fluid rounded-elegant">
+          <div class="image-overlay">
+            <h3>Transforma tus ideas en realidad</h3>
+            <p>Con nuestro equipo de expertos en planificación de eventos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="col-lg-6">
+        <div class="form-container p-4 p-lg-5 shadow-sm">
+          <!-- Contenedor para mensajes -->
+          <div id="mensaje-resultado"></div>
+          
+          <h2 class="form-title mb-4">Crea tu cuenta</h2>
+          <p class="form-subtitle mb-4">
+            Todo empieza con una idea. Tal vez sueñas con crear un evento inolvidable, celebrar un momento especial o transformar una visión en una experiencia única.
+          </p>
+
+          <form class="needs-validation" action="Registro.php" method="POST" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                  <label for="nombre">Nombre <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">
+                    Por favor ingresa tu nombre
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                  <label for="apellidos">Apellidos <span class="text-danger">*</span></label>
+                  <div class="invalid-feedback">
+                    Por favor ingresa tus apellidos
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" required>
+                <label for="email">Correo electrónico <span class="text-danger">*</span></label>
+                <div class="invalid-feedback">
+                  Por favor ingresa un correo válido
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <div class="form-floating">
+                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+                <label for="telefono">Teléfono <span class="text-danger">*</span></label>
+                <div class="invalid-feedback">
+                  Por favor ingresa tu teléfono
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <div class="form-floating position-relative">
+                <input type="password" class="form-control" id="contraseña" name="password" placeholder="Contraseña" required>
+                <label for="password">Contraseña <span class="text-danger">*</span></label>
+                <button type="button" class="btn btn-password-toggle">
+                  <i class="far fa-eye"></i>
+                </button>
+                <div class="invalid-feedback">
+                  Por favor ingresa una contraseña
+                </div>
+              </div>
+              <div class="password-strength mt-2">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                </div>
+                <small class="text-muted">Seguridad de la contraseña</small>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <div class="form-floating position-relative">
+                <input type="password" class="form-control" id="repetir-password" name="repetir-password" placeholder="Repita Contraseña" required>
+                <label for="repetir-password">Repita Contraseña <span class="text-danger">*</span></label>
+                <button type="button" class="btn btn-password-toggle">
+                  <i class="far fa-eye"></i>
+                </button>
+                <div class="invalid-feedback">
+                  Las contraseñas deben coincidir
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="terminos" required>
+              <label class="form-check-label" for="terminos">
+                Acepto los <a href="#" class="text-decoration-none">Términos y Condiciones</a> y la <a href="#" class="text-decoration-none">Política de Privacidad</a>
+              </label>
+            </div>
+            
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill" id="btn-registro">
+                Registrarme <i class="fas fa-arrow-right ms-2"></i>
+              </button>
+            </div>
+            
+            <div class="text-center">
+              <p class="mb-0">¿Ya tienes una cuenta? <a href="sesion.html" class="fw-bold text-decoration-none">Inicia sesión</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5 class="d-flex align-items-center">
+            <i class="fas fa-crown me-2"></i>Elite Eventos
+          </h5>
+          <p class="mt-3">Transformando sueños en experiencias memorables desde 2010.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h6>Ubicación</h6>
+          <p class="mt-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Cl. 25 #127-220, Barrio Pance, Cali, Valle del Cauca
+          </p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.647284090291!2d-76.555589!3d3.424757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMjUnMjkuMSJOIDc2wrAzMycyMC4xIlc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h6>Contacto</h6>
+          <p class="mt-3">
+            <i class="fas fa-envelope me-2"></i>saamuel009@gmail.com<br>
+            <i class="fas fa-phone me-2"></i>(57) 312 691 5311
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="copyright py-3 text-center">
+      <p class="mb-0 small">© 2023 Elite Eventos. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Validación del formulario
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+      
+      // Mostrar/ocultar contraseña
+      document.querySelectorAll('.btn-password-toggle').forEach(function(button) {
+        button.addEventListener('click', function() {
+          const input = this.previousElementSibling;
+          const icon = this.querySelector('i');
+          if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+          } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+          }
+        });
+      });
+      
+      // Validar que las contraseñas coincidan
+      document.querySelector('form').addEventListener('submit', function(e) {
+          const password = document.getElementById('contraseña').value;
+          const repeatPassword = document.getElementById('repetir-password').value;
+          
+          if (password !== repeatPassword) {
+              e.preventDefault();
+              mostrarMensaje('Las contraseñas no coinciden', 'danger');
+          }
+      });
+
+      // Indicador de fuerza de contraseña
+      document.getElementById('contraseña').addEventListener('input', function() {
+        const strength = calculatePasswordStrength(this.value);
+        const progressBar = document.querySelector('.progress-bar');
+        progressBar.style.width = strength.percentage + '%';
+        progressBar.className = 'progress-bar bg-' + strength.color;
+      });
+      
+      function calculatePasswordStrength(password) {
+        let strength = 0;
+        if (password.length > 0) strength += 10;
+        if (password.length >= 8) strength += 30;
+        if (/[A-Z]/.test(password)) strength += 20;
+        if (/[0-9]/.test(password)) strength += 20;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+        
+        let color = 'danger';
+        if (strength > 70) color = 'success';
+        else if (strength > 40) color = 'warning';
+        
+        return { percentage: Math.min(strength, 100), color: color };
+      }
+      
+      // Función para mostrar mensajes
+      function mostrarMensaje(texto, tipo) {
+        const mensajeDiv = document.getElementById('mensaje-resultado');
+        mensajeDiv.innerHTML = `
+          <div class="alert alert-${tipo} alert-dismissible fade show" role="alert">
+            ${texto}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        `;
+        setTimeout(() => {
+          const alert = document.querySelector('.alert');
+          if (alert) alert.classList.add('fade');
+        }, 3000);
+      }
+    })();
+  </script>
+</body>
+</html>
